@@ -118,7 +118,8 @@ const projects = [
     link: "https://www.flyhyer.com/",
     company: "SocialX Labs",
     year: "2021",
-    color:"pink"
+    color:"pink",
+  
   },
   // {
   //   id: 8,
@@ -172,27 +173,70 @@ const ProjectPage = () => {
   }, []);
 
   useEffect(() => {
+    const animations = [];
+  
     projectRefs.current.forEach((ref, index) => {
-      if (ref) {
-        const offset = index * 20; // move it here 👈
-        gsap.fromTo(
-          ref,
-          { opacity: 1, y: offset + 50 },
-          {
-            opacity: 1,
-            y: offset,
-            duration: 0.5,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: ref,
-              start: "top 80%",
-              toggleActions: "play none none none",
-            },
-          }
-        );
-      }
+      if (!ref) return;
+  
+      const offset = (index - 1) * 20;
+  
+      const anim = gsap.fromTo(
+        ref,
+        { opacity: 1, y: offset + 50 },
+        {
+          opacity: 1,
+          y: offset,
+          duration: 0.5,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ref,
+            start: "top 80%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+  
+      animations.push(anim);
     });
-    
+  
+    // When the last card scrolls into view, reset all Y to 0
+    if (projectRefs.current.length > 0) {
+      const lastRef = projectRefs.current[projectRefs.current.length - 1];
+  
+      ScrollTrigger.create({
+        trigger: lastRef,
+        start: "top 80%",
+        onEnter: () => {
+          projectRefs.current.forEach((ref) => {
+            if (ref) {
+              gsap.to(ref, {
+                y: 0,
+                duration: 0.6,
+                ease: "power3.out",
+              });
+            }
+          });
+        },
+        onLeaveBack: () => {
+          projectRefs.current.forEach((ref, index) => {
+            const offset = (index - 1) * 20;
+            if (ref) {
+              gsap.to(ref, {
+                y: offset,
+                duration: 0.6,
+                ease: "power3.out",
+              });
+            }
+          });
+        },
+      });
+      
+    }
+  
+    return () => {
+      animations.forEach((anim) => anim.scrollTrigger?.kill());
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+    };
   }, []);
 
   const shouldBlur = (index) => {
@@ -224,6 +268,7 @@ const ProjectPage = () => {
                top: "90px",
                zIndex: 10,
                backgroundColor:project.color,
+             
               //  transform: `translateY(${index * 90}px)`, // 👈 this creates the staggered layout
              }}
            >
