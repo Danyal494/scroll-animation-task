@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { color } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,6 +24,7 @@ const projects = [
     link: "https://autoupscale.com/",
     company: "Quantum Dynamics",
     year: "2023",
+      color:"purple"
   },
   {
     id: 2,
@@ -38,6 +40,7 @@ const projects = [
     link: "https://codeupscale.com/",
     company: "Tech Innovators",
     year: "2022",
+      color:"Green"
   },
   // {
   //   id: 3,
@@ -68,6 +71,7 @@ const projects = [
     link: "https://www.sehatghar.com/",
     company: "SocialX Labs",
     year: "2021",
+      color:"red"
   },
   {
     id: 5,
@@ -83,6 +87,7 @@ const projects = [
     link: "https://www.alezay.com/",
     company: "SocialX Labs",
     year: "2021",
+      color:"blue"
   },
   // {
   //   id: 6,
@@ -113,6 +118,7 @@ const projects = [
     link: "https://www.flyhyer.com/",
     company: "SocialX Labs",
     year: "2021",
+    color:"pink"
   },
   // {
   //   id: 8,
@@ -168,12 +174,13 @@ const ProjectPage = () => {
   useEffect(() => {
     projectRefs.current.forEach((ref, index) => {
       if (ref) {
+        const offset = index * 20; // move it here 👈
         gsap.fromTo(
           ref,
-          { opacity: 1, y: 50 },
+          { opacity: 1, y: offset + 50 },
           {
             opacity: 1,
-            y: 0,
+            y: offset,
             duration: 0.5,
             ease: "power2.out",
             scrollTrigger: {
@@ -185,6 +192,7 @@ const ProjectPage = () => {
         );
       }
     });
+    
   }, []);
 
   const shouldBlur = (index) => {
@@ -205,14 +213,20 @@ const ProjectPage = () => {
           {/* <div className="bg-pink-500 w-56 h-56"></div> */}
           <div className="w-11/12 md:w-10/12 lg:w-8/12">
             {projects.map((project, index) => (
-              <div
-                key={project.id}
-                ref={(el) => (projectRefs.current[index] = el)}
-                className={`bg-white p-8 rounded-lg shadow-lg flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 items-center mb-12 transition-all duration-300 ${
-                  shouldBlur(index) ? "blur-sm" : ""
-                }`}
-                style={{ position: "sticky", top: "90px", zIndex: 10 }}
-              >
+             <div
+             key={project.id}
+             ref={(el) => (projectRefs.current[index] = el)}
+             className={`p-8 rounded-lg shadow-lg flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 items-center mb-12 transition-all duration-300 ${
+               shouldBlur(index) ? "blur-sm" : ""
+             }`}
+             style={{
+               position: "sticky",
+               top: "90px",
+               zIndex: 10,
+               backgroundColor:project.color,
+              //  transform: `translateY(${index * 90}px)`, // 👈 this creates the staggered layout
+             }}
+           >
                 <div className="md:w-1/2">
                   <p className="text-teal-600 uppercase tracking-wider">
                     {project.company} • {project.year}
