@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+/* Add this to your CSS */
+.swipe-section {
+  height: 100vh;
+  width: 100%;
+  overflow: visible;
+  position: relative;
+}
+
+.panel {
+  position: absolute;
+}
