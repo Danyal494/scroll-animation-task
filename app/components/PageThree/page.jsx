@@ -191,6 +191,7 @@ const ProjectPage = () => {
           scrollTrigger: {
             trigger: ref,
             start: "top 80%",
+            end:"end 80%",
             toggleActions: "play none none none",
           },
         }
@@ -205,7 +206,7 @@ const ProjectPage = () => {
   
       ScrollTrigger.create({
         trigger: lastRef,
-        start: "top 80%",
+        start: "top 70%",
         onEnter: () => {
           projectRefs.current.forEach((ref) => {
             if (ref) {
