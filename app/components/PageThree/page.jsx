@@ -190,8 +190,8 @@ const ProjectPage = () => {
           ease: "power2.out",
           scrollTrigger: {
             trigger: ref,
-            start: "top 80%",
-            end:"end 80%",
+            start: "top 50%",
+            // end:"end 80%",
             toggleActions: "play none none none",
           },
         }
@@ -206,12 +206,13 @@ const ProjectPage = () => {
   
       ScrollTrigger.create({
         trigger: lastRef,
-        start: "top 70%",
+        start: "top 50%",
+        // end:"end 80%",
         onEnter: () => {
           projectRefs.current.forEach((ref) => {
             if (ref) {
               gsap.to(ref, {
-                y: 0,
+                y: 10,
                 duration: 0.6,
                 ease: "power3.out",
               });
@@ -251,9 +252,13 @@ const ProjectPage = () => {
   };
 
   return (
-    <div>
-      {/* <Projects /> */}
-      <div className="min-h-screen bg-white text-gray-900">
+    <div >
+ 
+      <div className="min-h-screen bg-white grid grid-cols-2 text-gray-900">
+      <div className="w-[50vw] h-screen sticky top-0 flex items-center justify-center bg-black z-20">
+    <h2 className="text-6xl text-white">University List</h2>
+  </div>
+
         <section className="flex flex-col items-center justify-center py-16">
           {/* <div className="bg-pink-500 w-56 h-56"></div> */}
           <div className="w-11/12 md:w-10/12 lg:w-8/12">

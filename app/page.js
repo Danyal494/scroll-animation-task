@@ -4,10 +4,12 @@ import PageTwo from "./components/PageTwo/page";
 import PageThree from "./components/PageThree/page";
 import PageZero from "./components/PageZero/page";
 import PageFour from "./components/pageFour/page";
+import PageNOne from "./components/PageNOne/page";
 
 export default function Home() {
   return (
     <>
+    <PageNOne/>
     <PageZero/>
  <PageOne/>
  <PageTwo/>
