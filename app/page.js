@@ -5,11 +5,13 @@ import PageThree from "./components/PageThree/page";
 import PageZero from "./components/PageZero/page";
 import PageFour from "./components/pageFour/page";
 import PageNOne from "./components/PageNOne/page";
+import GalleryComponent from "./components/MerqueeScroll/page";
 
 export default function Home() {
   return (
     <>
     <PageNOne/>
+    <GalleryComponent/>
     <PageZero/>
  <PageOne/>
  <PageTwo/>
