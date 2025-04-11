@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { color } from "framer-motion";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
