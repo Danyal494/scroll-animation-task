@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
     <PageNOne/>
-    {/* <ScholarshipScroll/> */}
+    <ScholarshipScroll/>
     <PageFive/>
     <GalleryComponent/>
     <PageZero/>
