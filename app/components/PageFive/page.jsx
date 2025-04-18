@@ -107,7 +107,7 @@ export default function PageFive() {
             <div
               key={index}
               ref={(el) => (imageRefs.current[index] = el)}
-              className="w-40 h-full flex-shrink-0 flex items-center relative group transition-all duration-300"
+              className="w-40 h-[90%] flex-shrink-0 flex items-center relative group transition-all duration-300"
             >
               <img
                 src={img}
